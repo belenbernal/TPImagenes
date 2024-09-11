@@ -1,0 +1,71 @@
+# Compiled Object files
+*.o
+*.obj
+
+# Compiled Static libraries
+*.lib
+*.a
+
+# Compiled Dynamic libraries
+*.dll
+*.so
+*.dylib
+
+# Executable files
+*.exe
+*.out
+*.app
+
+# Debug files
+*.log
+*.dbg
+*.stackdump
+*.dSYM/
+*.exe.stackdump
+
+# IDEs and Editors
+# Eclipse
+.project
+.cproject
+.settings/
+
+# Code::Blocks
+*.layout
+
+# CLion
+cmake-build-debug/
+cmake-build-release/
+.idea/
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/shelf/
+.idea/**/contentModel.xml
+.idea/**/inspectionProfiles/*
+.idea/**/inspectionProfiles/Project_Default.xml
+
+# Visual Studio Code
+.vscode/
+
+# Mac OS X
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+
+# CMake generated files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Build directories
+build/
+bin/
