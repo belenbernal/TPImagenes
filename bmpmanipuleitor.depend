@@ -73,3 +73,27 @@
 
 1726011164 c:\users\185429\desktop\bmpmanipuleitor\estructuras.h
 
+1726172839 source:c:\users\185429\documents\unlam\topicos_de_programacion\tp 2c 2024\tpimagenes\funciones_grupo.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<stdbool.h>
+	"funciones_grupo.h"
+	"constantes.h"
+	"estructuras.h"
+
+1726014338 c:\users\185429\documents\unlam\topicos_de_programacion\tp 2c 2024\tpimagenes\funciones_grupo.h
+	"funciones_machi.h"
+	"funciones_fernandez.h"
+
+1726172423 c:\users\185429\documents\unlam\topicos_de_programacion\tp 2c 2024\tpimagenes\funciones_fernandez.h
+	"estructuras.h"
+
+1726014338 c:\users\185429\documents\unlam\topicos_de_programacion\tp 2c 2024\tpimagenes\estructuras.h
+
+1726169589 c:\users\185429\documents\unlam\topicos_de_programacion\tp 2c 2024\tpimagenes\constantes.h
+
+1726014338 source:c:\users\185429\documents\unlam\topicos_de_programacion\tp 2c 2024\tpimagenes\main.c
+	<stdio.h>
+	"funciones_grupo.h"
+
