@@ -288,7 +288,8 @@ void liberarMemoriaImg(t_pixel **matriz, unsigned int alto)
     free(matriz);
 }
 
-void liberarMemoriaMetadata(t_metadata *metadata) {
+void liberarMemoriaMetadata(t_metadata *metadata)
+{
     free(metadata);
 }
 
@@ -313,8 +314,12 @@ void leerEncabezado(FILE *archivo, t_metadata *metadata)
 
 void escribirImagenBMP(const char *nombreArchivo, t_metadata *metadata, t_pixel **matriz)
 {
+    char * nombreArchivoCompleto = (char *)malloc(256);
+    strcpy(nombreArchivoCompleto, "DIGNIDAD_");
+    strcat(nombreArchivoCompleto, nombreArchivo);
+    strcat(nombreArchivoCompleto, ".bmp");
 
-    FILE *archivo = fopen(nombreArchivo, "wb");
+    FILE *archivo = fopen(nombreArchivoCompleto, "wb");
     if (!archivo)
     {
         perror("Error al abrir el archivo para escritura");
@@ -350,7 +355,7 @@ void escribirImagenBMP(const char *nombreArchivo, t_metadata *metadata, t_pixel 
         }
     }
 
-    printf("\n\nEscribe: %s", nombreArchivo);
+    printf("\nSe creo el archivo: %s", nombreArchivoCompleto);
 
     fclose(archivo);
 }
@@ -409,7 +414,7 @@ int concatenarVertical(t_pixel **imagen, t_pixel **imagen2, t_metadata *metadata
     metadata->ancho = nuevo_ancho;
     metadata->alto = nuevo_alto;
 
-    escribirImagenBMP("concatenar_vertical.bmp", metadata, nueva_imagen);
+    escribirImagenBMP("concatenar_vertical", metadata, nueva_imagen);
 
     return TODO_OK;
 }
@@ -471,7 +476,7 @@ int concatenarHorizontal(t_pixel **imagen, t_pixel **imagen2, t_metadata *metada
     metadata->ancho = nuevo_ancho;
     metadata->alto = nuevo_alto;
 
-    escribirImagenBMP("concatenar_horizontal.bmp", metadata, nueva_imagen);
+    escribirImagenBMP("concatenar_horizontal", metadata, nueva_imagen);
 
     return TODO_OK;
 }
@@ -503,7 +508,7 @@ int ajustarContraste(t_pixel **imagen, t_metadata *metadata, int parametro)
         }
     }
 
-    escribirImagenBMP("aumentar_contraste.bmp", metadata, imagen);
+    escribirImagenBMP("aumentar_contraste", metadata, imagen);
     return TODO_OK;
 }
 
@@ -544,7 +549,7 @@ int rotarImagenDerecha(t_pixel** imagen, t_metadata *metadata)
     metadata->ancho = nuevo_ancho;
     metadata->alto = nuevo_alto;
 
-    escribirImagenBMP("rotar_derecha.bmp", metadata, imagen);
+    escribirImagenBMP("rotar_derecha", metadata, imagen);
 
     return 0;
 }
@@ -586,7 +591,7 @@ int rotarImagenIzquierda(t_pixel** imagen, t_metadata *metadata)
     metadata->ancho = nuevo_ancho;
     metadata->alto = nuevo_alto;
 
-    escribirImagenBMP("rotar_izquierda.bmp", metadata, imagen);
+    escribirImagenBMP("rotar_izquierda", metadata, imagen);
 
     return 0;
 }
@@ -602,7 +607,7 @@ int tonalidadRoja(t_pixel **imagen, t_metadata *metadata, int param)
         }
     }
 
-    escribirImagenBMP("tonalidad_roja.bmp", metadata, imagen);
+    escribirImagenBMP("tonalidad_roja", metadata, imagen);
     return TODO_OK;
 }
 
@@ -616,7 +621,7 @@ int tonalidadVerde(t_pixel **imagen, t_metadata *metadata, int param)
             imagen[i][j].pixel[1] = (valor > 255) ? 255 : valor;
         }
     }
-    escribirImagenBMP("tonalidad_verde.bmp", metadata, imagen);
+    escribirImagenBMP("tonalidad_verde", metadata, imagen);
     return TODO_OK;
 }
 
@@ -630,11 +635,12 @@ int tonalidadAzul(t_pixel **imagen, t_metadata *metadata, int param)
             imagen[i][j].pixel[0] = (valor > 255) ? 255 : valor;
         }
     }
-    escribirImagenBMP("tonalidad_azul.bmp", metadata, imagen);
+    escribirImagenBMP("tonalidad_azul", metadata, imagen);
     return TODO_OK;
 }
 
-int espejarHorizontal(t_pixel **imagen, t_metadata *metadata) {
+int espejarHorizontal(t_pixel **imagen, t_metadata *metadata)
+{
 
     t_pixel **imagen_temporal = (t_pixel **)malloc(sizeof(t_pixel *) * metadata->alto);
     for(unsigned int i = 0; i < metadata->alto; i++)
@@ -642,15 +648,17 @@ int espejarHorizontal(t_pixel **imagen, t_metadata *metadata) {
         imagen_temporal[i] = (t_pixel *)malloc(metadata->ancho * sizeof(t_pixel));
     }
 
-    for(int i = 0; i < metadata->alto; i++) {
-        for(int j = 0; j < metadata->ancho/2; j++) {
+    for(int i = 0; i < metadata->alto; i++)
+    {
+        for(int j = 0; j < metadata->ancho/2; j++)
+        {
             imagen_temporal[i][j] = imagen[i][j];
             imagen[i][j] = imagen[i][metadata->ancho - j];
             imagen[i][metadata->ancho - j] = imagen_temporal[i][j];
         }
     }
 
-    escribirImagenBMP("espejar_horizontal.bmp", metadata, imagen);
+    escribirImagenBMP("espejar_horizontal", metadata, imagen);
     liberarMemoriaImg(imagen_temporal, metadata->alto);
 
     return TODO_OK;
