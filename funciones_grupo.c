@@ -132,6 +132,7 @@ int solucion(int argc, char* argv[])
             }
             else
             {
+                printf("\n\n*** Error: Debe ingresar un parametro comprendido entre 0 y 100 ***");
                 res = ERR_PARAMETRO;
             }
         }
@@ -143,6 +144,7 @@ int solucion(int argc, char* argv[])
             }
             else
             {
+                printf("\n\n*** Error: Debe ingresar un parametro comprendido entre 0 y 100 ***");
                 res = ERR_PARAMETRO;
             }
         }
@@ -154,6 +156,7 @@ int solucion(int argc, char* argv[])
             }
             else
             {
+                printf("\n\n*** Error: Debe ingresar un parametro comprendido entre 0 y 100 ***");
                 res = ERR_PARAMETRO;
             }
         }
@@ -165,6 +168,7 @@ int solucion(int argc, char* argv[])
             }
             else
             {
+                printf("\n\n*** Error: Debe ingresar un parametro comprendido entre 0 y 100 ***");
                 res = ERR_PARAMETRO;
             }
         }
@@ -176,6 +180,7 @@ int solucion(int argc, char* argv[])
             }
             else
             {
+                printf("\n\n*** Error: Debe ingresar un parametro comprendido entre 0 y 100 ***");
                 res = ERR_PARAMETRO;
             }
         }
@@ -195,6 +200,7 @@ int solucion(int argc, char* argv[])
             }
             else
             {
+                printf("\n\n*** Error: Debe ingresar un parametro comprendido entre 0 y 100 ***");
                 res = ERR_PARAMETRO;
             }
         }
@@ -206,6 +212,7 @@ int solucion(int argc, char* argv[])
             }
             else
             {
+                printf("\n\n*** Error: Debe ingresar un parametro comprendido entre 0 y 100 ***");
                 res = ERR_PARAMETRO;
             }
         }
@@ -753,7 +760,7 @@ int ajustarContraste(t_pixel **imagen, t_metadata *metadata, int parametro, char
 {
     if (parametro <= 0 || parametro > 100)
     {
-        printf("\n\n*** Error: Parametro fuera de rango. Debe estar entre 0 y 100. ***");
+        printf("\n\n*** Error: Debe ingresar un parametro comprendido entre 0 y 100 ***");
         return ERR_PARAMETRO;
     }
 
@@ -885,7 +892,7 @@ int tonalidadRoja(t_pixel **imagen, t_metadata *metadata, int param, char * nomb
 {
     if (param <= 0 || param > 100)
     {
-        printf("\n\n*** Error: Parametro fuera de rango. Debe estar entre 0 y 100. ***");
+        printf("\n\n*** Error: Debe ingresar un parametro comprendido entre 0 y 100 ***");
         return ERR_PARAMETRO;
     }
 
@@ -906,7 +913,7 @@ int tonalidadVerde(t_pixel **imagen, t_metadata *metadata, int param, char * nom
 {
     if (param <= 0 || param > 100)
     {
-        printf("\n\n*** Error: Parametro fuera de rango. Debe estar entre 0 y 100. ***");
+        printf("\n\n*** Error: Debe ingresar un parametro comprendido entre 0 y 100 ***");
         return ERR_PARAMETRO;
     }
 
@@ -926,7 +933,7 @@ int tonalidadAzul(t_pixel **imagen, t_metadata *metadata, int param, char * nomb
 {
     if (param <= 0 || param > 100)
     {
-        printf("\n\n*** Error: Parametro fuera de rango. Debe estar entre 0 y 100. ***");
+        printf("\n\n*** Error: Debe ingresar un parametro comprendido entre 0 y 100 ***");
         return ERR_PARAMETRO;
     }
 
