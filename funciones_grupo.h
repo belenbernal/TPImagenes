@@ -7,6 +7,7 @@ Aquí deben hacer los includes de sus archivos individuales, por ejemplo:
  */
 
  #include "funciones_fernandez.h"
+ #include "funciones_bernal.h"
 
 int solucion(int argc, char* argv[]);
 
