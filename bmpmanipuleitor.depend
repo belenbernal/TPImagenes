@@ -97,3 +97,27 @@
 	<stdio.h>
 	"funciones_grupo.h"
 
+1726361634 source:c:\users\belu\downloads\tpimagenes\tpimagenes\funciones_grupo.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<stdbool.h>
+	"funciones_grupo.h"
+	"constantes.h"
+	"estructuras.h"
+
+1726194766 c:\users\belu\downloads\tpimagenes\tpimagenes\funciones_grupo.h
+	"funciones_machi.h"
+	"funciones_fernandez.h"
+
+1726361831 c:\users\belu\downloads\tpimagenes\tpimagenes\funciones_fernandez.h
+	"estructuras.h"
+
+1726361750 c:\users\belu\downloads\tpimagenes\tpimagenes\estructuras.h
+
+1726194765 c:\users\belu\downloads\tpimagenes\tpimagenes\constantes.h
+
+1726194766 source:c:\users\belu\downloads\tpimagenes\tpimagenes\main.c
+	<stdio.h>
+	"funciones_grupo.h"
+

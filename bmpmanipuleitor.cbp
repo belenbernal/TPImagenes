@@ -11,7 +11,7 @@
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
-				<Option parameters="--docente unlam.bmp --negativo --escala-de-grises" />
+				<Option parameters="unlam.bmp --comodin --escala-de-grises --espejar-vertical" />
 				<Compiler>
 					<Add option="-g" />
 				</Compiler>

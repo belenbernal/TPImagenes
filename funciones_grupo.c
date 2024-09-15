@@ -7,10 +7,10 @@
     DNI: 42838357
     Entrega: SI
     -----------------
-    Apellido:
-    Nombre:
-    DNI:
-    Entrega:
+    Apellido:Bernal
+    Nombre:Ana Belen
+    DNI:41713487
+    Entrega:SI
     -----------------
     Apellido:
     Nombre:
@@ -28,11 +28,6 @@
 
 int solucion(int argc, char* argv[])
 {
-    /*
-        Aquí deben hacer el código que solucione lo solicitado.
-        Todas las funciones utilizadas deben estar declaradas en este archivo, y en su respectivo .h
-    */
-
     /* Bitmap file format
     *
     * SECTION
@@ -86,7 +81,7 @@ int solucion(int argc, char* argv[])
         extraerFiltroYParametro(filtros[i], filtro, &parametro);
         if(strcmp(filtro, "--escala-de-grises") == 0)
         {
-
+            res = escalaDeGrises(imagen, metadata);
         }
         else if(strcmp(filtro, "--rotar-derecha") == 0)
         {
@@ -155,19 +150,19 @@ int solucion(int argc, char* argv[])
         }
         else if(strcmp(filtro, "--espejar-vertical") == 0)
         {
-
+            res = espejarVerticalmente(imagen, metadata);
         }
         else if(strcmp(filtro, "--recortar") == 0)
         {
-
+            res = recortar(&imagen, metadata, parametro);
         }
         else if(strcmp(filtro, "--achicar") == 0)
         {
-
+            res = achicar(&imagen, metadata, parametro);
         }
         else if(strcmp(filtro, "--comodin") == 0)
         {
-
+            res = negativo(imagen, metadata);
         }
 
         if(res != TODO_OK)
@@ -358,6 +353,175 @@ void escribirImagenBMP(const char *nombreArchivo, t_metadata *metadata, t_pixel 
     printf("\nSe creo el archivo: %s", nombreArchivoCompleto);
 
     fclose(archivo);
+}
+
+int escalaDeGrises(t_pixel **imagen, t_metadata *metadata)
+{
+    for (unsigned int i = 0; i < metadata->alto; i++)
+    {
+        for (unsigned int j = 0; j < metadata->ancho; j++)
+        {
+            // Calculo del promedio de los valores RGB
+            unsigned char gris = (imagen[i][j].pixel[0] + imagen[i][j].pixel[1] + imagen[i][j].pixel[2]) / 3;
+
+            imagen[i][j].pixel[0] = gris;  // B
+            imagen[i][j].pixel[1] = gris;  // G
+            imagen[i][j].pixel[2] = gris;  // R
+        }
+    }
+
+    escribirImagenBMP("escala_de_grises", metadata, imagen);
+    return TODO_OK;
+}
+
+int espejarVerticalmente(t_pixel **imagen, t_metadata *metadata)
+{
+    // Recorremos solo la mitad de las filas
+    for (unsigned int i = 0; i < metadata->alto / 2; i++)
+    {
+        // Intercambo cada píxel de la fila 'i' con la fila 'alto - i - 1'
+        for (unsigned int j = 0; j < metadata->ancho; j++)
+        {
+            // Guardamos el pixel de la fila superior en una variable temporal
+            t_pixel temp = imagen[i][j];
+
+            // Espejamos el pixel de la fila inferior en la fila superior
+            imagen[i][j] = imagen[metadata->alto - i - 1][j];
+
+            // Colocamos el pixel guardado temporalmente en la fila inferior
+            imagen[metadata->alto - i - 1][j] = temp;
+        }
+    }
+    escribirImagenBMP("espejar_vertical", metadata, imagen);
+    return TODO_OK;
+}
+
+int negativo(t_pixel **imagen, t_metadata *metadata)
+{
+    for (unsigned int i = 0; i < metadata->alto; i++)
+    {
+        for (unsigned int j = 0; j < metadata->ancho; j++)
+        {
+            // Inverto los valores RGB de cada píxel para obtener el negativo
+            imagen[i][j].pixel[0] = 255 - imagen[i][j].pixel[0];  // B
+            imagen[i][j].pixel[1] = 255 - imagen[i][j].pixel[1];  // G
+            imagen[i][j].pixel[2] = 255 - imagen[i][j].pixel[2];  // R
+        }
+    }
+
+    escribirImagenBMP("comodin_negativo", metadata, imagen);
+
+    return TODO_OK;
+}
+
+int recortar(t_pixel ***imagen, t_metadata *metadata, float parametro)
+{
+    // Valido que el parametro esté en el rango de 0 a 100
+    if (parametro <= 0 || parametro > 100)
+    {
+        printf("Parametro fuera de rango. Debe estar entre 0 y 100.\n");
+        return ERR_PARAMETRO;
+    }
+
+    // Calculo las nuevas dimensiones basadas en el parametro
+    unsigned int nuevo_ancho = (unsigned int)(metadata->ancho * (parametro / 100));
+    unsigned int nuevo_alto = (unsigned int)(metadata->alto * (parametro / 100));
+
+    // Creo una nueva matriz de píxeles para la imagen recortada
+    t_pixel **nueva_imagen = malloc(nuevo_alto * sizeof(t_pixel *));
+    if (nueva_imagen == NULL)
+    {
+        printf("Error al asignar memoria para la nueva imagen.\n");
+        return ERR_MEMORIA;
+    }
+
+    for (unsigned int i = 0; i < nuevo_alto; i++)
+    {
+        nueva_imagen[i] = malloc(nuevo_ancho * sizeof(t_pixel));
+        if (nueva_imagen[i] == NULL)
+        {
+            printf("Error al asignar memoria para las filas de la nueva imagen.\n");
+            for (unsigned int k = 0; k < i; k++) // Libero las filas previamente asignadas
+                free(nueva_imagen[k]);
+            free(nueva_imagen);
+            return ERR_MEMORIA;
+        }
+    }
+
+    // Copio los píxeles dentro de las nuevas dimensiones
+    for (unsigned int i = 0; i < nuevo_alto; i++)
+    {
+        for (unsigned int j = 0; j < nuevo_ancho; j++)
+        {
+            nueva_imagen[i][j] = (*imagen)[i][j];  // Copio el píxel original
+        }
+    }
+
+    // Actualizo los metadatos
+    metadata->ancho = nuevo_ancho;
+    metadata->alto = nuevo_alto;
+
+    for (unsigned int i = 0; i < metadata->alto; i++)
+        free((*imagen)[i]);
+    free(*imagen);
+
+    // Asigno la nueva imagen al puntero original
+    *imagen = nueva_imagen;
+
+    escribirImagenBMP("recortar", metadata, *imagen);
+
+    return TODO_OK;
+}
+
+int achicar(t_pixel ***imagen, t_metadata *metadata, unsigned int parametro)
+{
+    // Valido el parametro
+    if (parametro > 100 || parametro == 0)
+    {
+        return ERR_PARAMETRO;
+    }
+
+    // Nuevas dimensiones basadas en el parametro
+    unsigned int nuevo_ancho = (metadata->ancho * parametro) / 100;
+    unsigned int nuevo_alto = (metadata->alto * parametro) / 100;
+
+    // Matriz de píxeles con las nuevas dimensiones
+    t_pixel **nuevaImagen = (t_pixel **)malloc(nuevo_alto * sizeof(t_pixel *));
+    for (unsigned int i = 0; i < nuevo_alto; i++)
+    {
+        nuevaImagen[i] = (t_pixel *)malloc(nuevo_ancho * sizeof(t_pixel));
+    }
+
+    // Modifico los píxeles de la imagen original a la nueva imagen
+    for (unsigned int i = 0; i < nuevo_alto; i++)
+    {
+        for (unsigned int j = 0; j < nuevo_ancho; j++)
+        {
+            // Obtengo el índice del píxel original más cercano
+            unsigned int origen_x = (j * metadata->ancho) / nuevo_ancho;
+            unsigned int origen_y = (i * metadata->alto) / nuevo_alto;
+
+            // Copio el píxel de la imagen original a la nueva imagen
+            nuevaImagen[i][j] = (*imagen)[origen_y][origen_x];
+        }
+    }
+
+    for (unsigned int i = 0; i < metadata->alto; i++)
+    {
+        free((*imagen)[i]);
+    }
+    free(*imagen);
+
+    // Imagen achicada
+    *imagen = nuevaImagen;
+
+    // Actualizo los metadatos
+    metadata->ancho = nuevo_ancho;
+    metadata->alto = nuevo_alto;
+
+    escribirImagenBMP("achicar", metadata, *imagen);
+
+    return TODO_OK;
 }
 
 int concatenarVertical(t_pixel **imagen, t_pixel **imagen2, t_metadata *metadata, t_metadata *metadata2)

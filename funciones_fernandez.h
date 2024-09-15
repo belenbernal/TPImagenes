@@ -12,6 +12,12 @@ int concatenarVertical(t_pixel **imagen, t_pixel **imagen2, t_metadata *metadata
 int concatenarHorizontal(t_pixel **imagen, t_pixel **imagen2, t_metadata *metadata, t_metadata *metadata2);
 int espejarHorizontal(t_pixel **imagen, t_metadata *metadata);
 
+int escalaDeGrises(t_pixel **imagen, t_metadata *metadata);
+int espejarVerticalmente(t_pixel **imagen, t_metadata *metadata);
+int negativo(t_pixel **imagen, t_metadata *metadata);
+int recortar(t_pixel ***imagen, t_metadata *metadata, float parametro);
+int achicar(t_pixel ***imagen, t_metadata *metadata, unsigned int parametro);
+
 void obtenerArgumentos(char *nombreArchivoBMP[], char *filtros[], int argc, char *argv[], int *numFiltros, int *numArchivos);
 void mostrarArgumentos(char *nombreArchivoBMP[], char *filtros[], int numFiltros, int numArchivos);
 t_pixel **leerImagenBMP(char *nombreArchivoBMP, t_metadata *header);
