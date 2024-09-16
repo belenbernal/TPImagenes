@@ -126,3 +126,49 @@
 1726436889 c:\users\185429\documents\unlam\topicos_de_programacion\tp 2c 2024\tpimagenes\funciones_bernal.h
 	"estructuras.h"
 
+1726447443 source:c:\users\belu\source\repos\tpimagenes\funciones_grupo.c
+	"funciones_grupo.h"
+	"constantes.h"
+	"estructuras.h"
+
+1726446333 c:\users\belu\source\repos\tpimagenes\funciones_grupo.h
+	"funciones_machi.h"
+	"funciones_fernandez.h"
+	"funciones_bernal.h"
+	"funciones_mariani.h"
+
+1726447485 c:\users\belu\source\repos\tpimagenes\funciones_fernandez.h
+	"estructuras.h"
+	"constantes.h"
+
+1726443817 c:\users\belu\source\repos\tpimagenes\estructuras.h
+
+1726447485 c:\users\belu\source\repos\tpimagenes\funciones_bernal.h
+	"estructuras.h"
+	"constantes.h"
+
+1726447443 c:\users\belu\source\repos\tpimagenes\constantes.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<stdbool.h>
+	<time.h>
+
+1726443817 source:c:\users\belu\source\repos\tpimagenes\main.c
+	<stdio.h>
+	"funciones_grupo.h"
+
+1726446825 c:\users\belu\source\repos\tpimagenes\funciones_mariani.h
+
+1726446958 source:c:\users\belu\source\repos\tpimagenes\funciones_mariani.c
+
+1726447569 source:c:\users\belu\source\repos\tpimagenes\funciones_bernal.c
+	"estructuras.h"
+	"constantes.h"
+	"funciones_fernandez.h"
+	"funciones_fernandez.c"
+
+1726447344 c:\users\belu\source\repos\tpimagenes\funciones_fernandez.c
+	"estructuras.h"
+	"constantes.h"
+

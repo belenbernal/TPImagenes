@@ -11,7 +11,7 @@
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
-				<Option parameters="unlam.bmp --comodin --escala-de-grises --espejar-vertical" />
+				<Option parameters="unlam.bmp --negativo --escala-de-grises --espejar-horizontal --espejar-vertical --aumentar-contraste=20 --reducir-contraste=20 --tonalidad-azul=50 --tonalidad-verde=5 --tonalidad-roja=15 --recortar=30 --achicar=10 --rotar-derecha --rotar-izquierda --concatenar-vertical starwars.bmp --concatenar-horizontal starwars.bmp --comodin" />
 				<Compiler>
 					<Add option="-g" />
 				</Compiler>
@@ -36,6 +36,9 @@
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="estructuras.h" />
+		<Unit filename="funciones_bernal.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="funciones_fernandez.c">
 			<Option compilerVar="CC" />
 			<Option target="&lt;{~None~}&gt;" />
@@ -47,6 +50,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="funciones_grupo.h" />
+		<Unit filename="funciones_mariani.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="funciones_mariani.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
