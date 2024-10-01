@@ -20,7 +20,6 @@
 */
 
 #include "funciones_grupo.h"
-#include "constantes.h"
 #include "estructuras.h"
 
 int solucion(int argc, char* argv[])
