@@ -39,6 +39,7 @@
 		<Unit filename="funciones_bernal.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="funciones_bernal.h" />
 		<Unit filename="funciones_fernandez.c">
 			<Option compilerVar="CC" />
 			<Option target="&lt;{~None~}&gt;" />

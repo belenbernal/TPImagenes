@@ -1,5 +1,5 @@
 #include "estructuras.h"
-#include "constantes.h"
+#include "funciones_bernal.h"
 
 void extraerFiltroYParametro(const char *entrada, char *filtro, float *parametro)
 {
@@ -586,7 +586,7 @@ int ruido(t_pixel **imagen, t_metadata *metadata, char * nombreArchivoBMP[])
         }
     }
 
-    escribirImagenBMP("comodin-ruido", metadata, imagen, nombreArchivoBMP);
+    escribirImagenBMP("comodin", metadata, imagen, nombreArchivoBMP);
     return TODO_OK;
 }
 

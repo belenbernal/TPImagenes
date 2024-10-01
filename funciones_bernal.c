@@ -1,5 +1,4 @@
 #include "estructuras.h"
-#include "constantes.h"
 #include "funciones_fernandez.h"
 #include "funciones_fernandez.c"
 

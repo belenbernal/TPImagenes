@@ -1,7 +1,11 @@
 #ifndef FUNCIONES_FERNANDEZ_H_INCLUDED
 #define FUNCIONES_FERNANDEZ_H_INCLUDED
+#include <stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include <stdbool.h>
+#include <time.h>
 #include "estructuras.h"
-#include "constantes.h"
 
 int rotarImagenDerecha(t_pixel** imagen, t_metadata *metadata, char * nombreArchivoBMP[]);
 int ajustarContraste(t_pixel **imagen, t_metadata *metadata , int parametro, char * nombreArchivoBMP[], char tipoDeAjuste[]);
